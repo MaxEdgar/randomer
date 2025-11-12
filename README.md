@@ -1,6 +1,8 @@
 # Randomer
 
-A versatile command-line tool for generating random strings of characters, numbers, and symbols.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+A versatile and lightweight command-line tool for generating random strings. Whether you need passwords, test data, or just a random sequence of characters, Randomer has you covered.
 
 ## About The Project
 
@@ -8,13 +10,26 @@ Randomer is a simple yet powerful tool for developers, testers, or anyone in nee
 
 ### Built With
 
-*   [Python](https://www.python.org/)
+*   **Python 3**
 
 ## Getting Started
 
 ### Installation
 
-To install Randomer, you can use the provided `.deb` package.
+#### One-Liner Installation (Recommended)
+
+To install Randomer, you can clone the repository and run the installation script.
+
+```sh
+git clone https://github.com/MaxEdgar/randomer.git
+cd randomer
+./install.sh
+```
+*Note: For a true one-liner like `curl ... | bash`, you would need to host the `install.sh` and `randomer.deb` files at a publicly accessible URL.*
+
+#### Manual Installation
+
+If you have the `randomer.deb` file, you can install it directly:
 
 ```sh
 sudo dpkg -i randomer.deb
@@ -32,28 +47,28 @@ randomer [options]
 
 ### Examples
 
-*   Generate a 16-character random string:
+*   **Generate a default 16-character random string:**
     ```sh
     randomer
     ```
-*   Generate a 10-character string with numbers only:
+*   **Generate a 10-character string with numbers only:**
     ```sh
     randomer --length 10 --number-only
     ```
-*   Generate a 20-character string with uppercase letters only:
+*   **Generate a 20-character string with uppercase letters only:**
     ```sh
     randomer -l 20 -u
     ```
-*   Run in infinite mode, generating a new string every second:
+*   **Run in infinite mode, generating a new string every second:**
     ```sh
     randomer -i --sleep 1
     ```
-*   Generate a 15-character string with all character types, excluding 'a', 'b', and 'c', and with a prefix and suffix:
+*   **Generate a 15-character string with a prefix and suffix, excluding 'abc':**
     ```sh
-    randomer --length 15 --all --exclude "abc" --prefix "RAND-" --suffix "-END"
+    randomer -l 15 --prefix "RAND-" --suffix "-END" --exclude "abc"
     ```
 
-### Help Page
+### Full Help Page
 
 ```
 usage: randomer [-h] [-l LENGTH] [-i] [-n] [-t] [-u] [-o] [-s] [--all]
@@ -76,8 +91,8 @@ options:
   --all                 Use all characters (letters, numbers, symbols).
                         Default if no character set is specified.
   --no-letters          Exclude all letters.
-  -no-numbers          Exclude numbers.
-  -no-symbols          Exclude symbols.
+  --no-numbers          Exclude numbers.
+  --no-symbols          Exclude symbols.
   -e EXCLUDE, --exclude EXCLUDE
                         Exclude specific characters from the output.
   -p PREFIX, --prefix PREFIX
@@ -90,9 +105,9 @@ options:
 Example: randomer -l 10 -n -u
 ```
 
-## License
+## 📜 License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+This project is licensed under the MIT License.
 
 ---
 

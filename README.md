@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-A versatile and lightweight command-line tool for generating random strings. Whether you need passwords, test data, or just a random sequence of characters, Randomer has you covered.
+A versatile and lightweight command line tool for generating random strings. Whether you need passwords, test data, or just a random sequence of characters, Randomer has you covered.
 
 ## About The Project
 
@@ -25,7 +25,7 @@ git clone https://github.com/MaxEdgar/randomer.git
 cd randomer
 ./install.sh
 ```
-*Note: For a true one-liner like `curl ... | bash`, you would need to host the `install.sh` and `randomer.deb` files at a publicly accessible URL.*
+
 
 #### Manual Installation
 
@@ -105,7 +105,7 @@ options:
 Example: randomer -l 10 -n -u
 ```
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License.
 

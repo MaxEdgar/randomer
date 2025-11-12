@@ -23,6 +23,7 @@ To install Randomer, you can clone the repository and run the installation scrip
 ```sh
 git clone https://github.com/MaxEdgar/randomer.git
 cd randomer
+chmod +x install.sh
 ./install.sh
 ```
 

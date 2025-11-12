@@ -1,0 +1,7 @@
+Package: randomer
+Version: 1.0.0
+Architecture: all
+Maintainer: Maxmilliano Edgar <maxedgar008@gmail.com>
+Depends: python3
+Description: A simple random string generator.
+ A command-line tool to generate random strings of characters, numbers, and symbols with various options.

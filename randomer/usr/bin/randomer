@@ -1,0 +1,140 @@
+#!/usr/bin/env python3
+import argparse
+import random
+import string
+import time
+import sys
+
+def generate_random(length, char_set):
+    if not char_set:
+        print("Error: Character set is empty. Please check your flags.", file=sys.stderr)
+        sys.exit(1)
+    return ''.join(random.choice(char_set) for _ in range(length))
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="A versatile random string generator.",
+        epilog="Example: randomer -l 10 -n -u"
+    )
+    parser.add_argument(
+        '-l', '--length',
+        type=int,
+        default=16,
+        help='Length of the random string.'
+    )
+    parser.add_argument(
+        '-i', '--infinite',
+        action='store_true',
+        help='Run in infinite mode, printing a new random string on each line.'
+    )
+    parser.add_argument(
+        '-n', '--number-only',
+        action='store_true',
+        help='Use numbers only.'
+    )
+    parser.add_argument(
+        '-t', '--letters-only',
+        action='store_true',
+        help='Use letters only.'
+    )
+    parser.add_argument(
+        '-u', '--uppercase-only',
+        action='store_true',
+        help='Use uppercase letters only.'
+    )
+    parser.add_argument(
+        '-o', '--lowercase-only',
+        action='store_true',
+        help='Use lowercase letters only.'
+    )
+    parser.add_argument(
+        '-s', '--symbols-only',
+        action='store_true',
+        help='Use symbols only.'
+    )
+    parser.add_argument(
+        '--all',
+        action='store_true',
+        help='Use all characters (letters, numbers, symbols). Default if no character set is specified.'
+    )
+    parser.add_argument(
+        '--no-letters',
+        action='store_true',
+        help='Exclude all letters.'
+    )
+    parser.add_argument(
+        '--no-numbers',
+        action='store_true',
+        help='Exclude numbers.'
+    )
+    parser.add_argument(
+        '--no-symbols',
+        action='store_true',
+        help='Exclude symbols.'
+    )
+    parser.add_argument(
+        '-e', '--exclude',
+        type=str,
+        default='',
+        help='Exclude specific characters from the output.'
+    )
+    parser.add_argument(
+        '-p', '--prefix',
+        type=str,
+        default='',
+        help='Add a prefix to the output.'
+    )
+    parser.add_argument(
+        '-x', '--suffix',
+        type=str,
+        default='',
+        help='Add a suffix to the output.'
+    )
+    parser.add_argument(
+        '--sleep',
+        type=float,
+        default=0.1,
+        help='Time to sleep between each generation in infinite mode.'
+    )
+
+
+    args = parser.parse_args()
+
+    char_set = ''
+    if args.number_only:
+        char_set = string.digits
+    elif args.letters_only:
+        char_set = string.ascii_letters
+    elif args.uppercase_only:
+        char_set = string.ascii_uppercase
+    elif args.lowercase_only:
+        char_set = string.ascii_lowercase
+    elif args.symbols_only:
+        char_set = string.punctuation
+    else:
+        char_set = string.ascii_letters + string.digits + string.punctuation
+
+    if args.no_letters:
+        char_set = ''.join(c for c in char_set if c not in string.ascii_letters)
+    if args.no_numbers:
+        char_set = ''.join(c for c in char_set if c not in string.digits)
+    if args.no_symbols:
+        char_set = ''.join(c for c in char_set if c not in string.punctuation)
+
+    if args.exclude:
+        char_set = ''.join(c for c in char_set if c not in args.exclude)
+
+    if args.infinite:
+        try:
+            while True:
+                random_string = generate_random(args.length, char_set)
+                print(f"{args.prefix}{random_string}{args.suffix}")
+                time.sleep(args.sleep)
+        except KeyboardInterrupt:
+            print("\nExiting infinite mode.")
+    else:
+        random_string = generate_random(args.length, char_set)
+        print(f"{args.prefix}{random_string}{args.suffix}")
+
+if __name__ == "__main__":
+    main()
